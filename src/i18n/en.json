@@ -1,0 +1,126 @@
+{
+  "app": {
+    "name": "DietPlan",
+    "tagline": "Track your meal plan with your dietitian"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "clear": "Clear",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "loading": "Loading…",
+    "continue": "Continue",
+    "back": "Back",
+    "share": "Share",
+    "genericError": "Something went wrong",
+    "required": "Required"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "email": "Email",
+    "signInHeading": "Welcome back.",
+    "signInTagline": "Pick up where you left off.",
+    "sendMagicLink": "Send magic link",
+    "magicLinkSent": "Check your email for the magic link.",
+    "magicLinkHelp": "We'll send you a magic link — no password needed.",
+    "continueWithGoogle": "Continue with Google",
+    "orWithEmail": "Or with email",
+    "clientHint": "Clients receive an invitation from their dietitian.",
+    "errors": {
+      "linkExpired": "That sign-in link has expired or has already been used. Try again.",
+      "noInvitation": "We couldn't find an invitation for this email.",
+      "clientOnlyApp": "This app is for clients only.",
+      "generic": "Something went wrong while signing you in."
+    }
+  },
+  "accountArchived": {
+    "title": "Your account has been archived",
+    "body": "Contact your dietitian if you think this is a mistake."
+  },
+  "nav": {
+    "plan": "Plan",
+    "weight": "Weight",
+    "shopping": "Shopping",
+    "settings": "Settings"
+  },
+  "week": {
+    "noActivePlan": "You don't have an active plan yet.",
+    "day": "Day {{day}}",
+    "itemsProgress": "{{eaten}}/{{total}} eaten",
+    "trackAll": "Track all as eaten",
+    "trackAllConfirm": "Mark every untracked recipe today as eaten?",
+    "readOnly": "Past day — read-only",
+    "upcomingPlanReady": "You have a new plan ready to start.",
+    "upcomingPlanScheduled": "Next plan: {{date}}",
+    "viewNextPlanShopping": "View next plan's shopping list"
+  },
+  "meal": {
+    "addNote": "Add note",
+    "noteSaved": "Note saved",
+    "notePlaceholder": "Note for this meal…"
+  },
+  "tick": {
+    "eaten": "Eaten",
+    "partial": "Partial",
+    "skipped": "Skipped",
+    "pending": "Pending",
+    "chooseAlternative": "Choose alternative",
+    "ingredientsEaten": "What did you eat?",
+    "notePlaceholder": "Note…",
+    "addPhoto": "Add photo",
+    "photoSelected": "Photo attached",
+    "saved": "Saved"
+  },
+  "weight": {
+    "title": "Weight",
+    "current": "Current",
+    "start": "Start",
+    "daysAgo": "{{days}} days ago",
+    "logKg": "kg",
+    "logCta": "Log",
+    "deleteEntry": "Delete",
+    "empty": "No weight entries yet.",
+    "trendUp": "Up",
+    "trendDown": "Down",
+    "trendStable": "Stable",
+    "invalidKg": "Enter a valid weight (0–500 kg)"
+  },
+  "shopping": {
+    "title": "Shopping list",
+    "current": "Current plan",
+    "next": "Next plan",
+    "haveAlready": "Already have",
+    "alreadyHaveSection": "Already have ({{count}})",
+    "empty": "All items are already tracked.",
+    "share": "Share",
+    "categories": {
+      "produce": "Produce",
+      "dairy": "Dairy",
+      "grains": "Grains",
+      "protein": "Protein",
+      "other": "Other"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile",
+    "name": "Name",
+    "email": "Email",
+    "language": "Language",
+    "timezone": "Timezone",
+    "theme": "Theme",
+    "themeSystem": "System",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "saved": "Saved",
+    "exportData": "Export my data",
+    "exportDescription": "Download all your data as JSON.",
+    "dangerZone": "Danger zone",
+    "deleteAccount": "Delete account",
+    "deleteAccountConfirm": "Are you sure? This cannot be undone.",
+    "signOut": "Sign out"
+  }
+}

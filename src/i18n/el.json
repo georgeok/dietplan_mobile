@@ -1,0 +1,126 @@
+{
+  "app": {
+    "name": "DietPlan",
+    "tagline": "Παρακολούθησε το διαιτολόγιο σου"
+  },
+  "common": {
+    "save": "Αποθήκευση",
+    "cancel": "Ακύρωση",
+    "clear": "Καθαρισμός",
+    "delete": "Διαγραφή",
+    "edit": "Επεξεργασία",
+    "close": "Κλείσιμο",
+    "loading": "Φόρτωση…",
+    "continue": "Συνέχεια",
+    "back": "Πίσω",
+    "share": "Κοινοποίηση",
+    "genericError": "Κάτι πήγε στραβά",
+    "required": "Απαιτείται"
+  },
+  "auth": {
+    "signIn": "Σύνδεση",
+    "signOut": "Αποσύνδεση",
+    "email": "Email",
+    "signInHeading": "Καλώς ήρθες πίσω.",
+    "signInTagline": "Συνέχισε από εκεί που σταμάτησες.",
+    "sendMagicLink": "Στείλε μου σύνδεσμο",
+    "magicLinkSent": "Έλεγξε το email σου για τον σύνδεσμο σύνδεσης.",
+    "magicLinkHelp": "Θα σου στείλουμε έναν σύνδεσμο – χωρίς κωδικό.",
+    "continueWithGoogle": "Σύνδεση με Google",
+    "orWithEmail": "Ή με email",
+    "clientHint": "Πελάτες λαμβάνουν πρόσκληση από τον/την διαιτολόγο τους.",
+    "errors": {
+      "linkExpired": "Ο σύνδεσμος έχει λήξει. Στείλε νέο email.",
+      "noInvitation": "Δεν βρέθηκε πρόσκληση για αυτό το email.",
+      "clientOnlyApp": "Αυτή η εφαρμογή είναι μόνο για πελάτες.",
+      "generic": "Κάτι πήγε στραβά κατά τη σύνδεση."
+    }
+  },
+  "accountArchived": {
+    "title": "Ο λογαριασμός σου έχει αρχειοθετηθεί",
+    "body": "Επικοινώνησε με τον/την διαιτολόγο σου αν πιστεύεις ότι είναι λάθος."
+  },
+  "nav": {
+    "plan": "Πλάνο",
+    "weight": "Βάρος",
+    "shopping": "Λίστα",
+    "settings": "Ρυθμίσεις"
+  },
+  "week": {
+    "noActivePlan": "Δεν έχεις ενεργό πλάνο.",
+    "day": "Ημέρα {{day}}",
+    "itemsProgress": "{{eaten}}/{{total}} φαγωμένα",
+    "trackAll": "Σήμανε όλα ως φαγωμένα",
+    "trackAllConfirm": "Να σημανθούν όλα τα γεύματα της ημέρας ως φαγωμένα;",
+    "readOnly": "Παρελθούσα ημέρα — μόνο για ανάγνωση",
+    "upcomingPlanReady": "Έχεις νέο πλάνο έτοιμο να ξεκινήσει.",
+    "upcomingPlanScheduled": "Επόμενο πλάνο: {{date}}",
+    "viewNextPlanShopping": "Δες λίστα νέου πλάνου"
+  },
+  "meal": {
+    "addNote": "Προσθήκη σημείωσης",
+    "noteSaved": "Σημείωση αποθηκεύτηκε",
+    "notePlaceholder": "Σημείωση για το γεύμα…"
+  },
+  "tick": {
+    "eaten": "Φαγωμένο",
+    "partial": "Μερικώς",
+    "skipped": "Παράλειψη",
+    "pending": "Σε εκκρεμότητα",
+    "chooseAlternative": "Επίλεξε εναλλακτική",
+    "ingredientsEaten": "Τι έφαγες;",
+    "notePlaceholder": "Σημείωση…",
+    "addPhoto": "Προσθήκη φωτογραφίας",
+    "photoSelected": "Φωτογραφία επιλέχθηκε",
+    "saved": "Αποθηκεύτηκε"
+  },
+  "weight": {
+    "title": "Βάρος",
+    "current": "Τρέχον",
+    "start": "Έναρξη",
+    "daysAgo": "πριν {{days}} ημέρες",
+    "logKg": "kg",
+    "logCta": "Κατάγραψε",
+    "deleteEntry": "Διαγραφή",
+    "empty": "Δεν υπάρχουν εγγραφές βάρους.",
+    "trendUp": "Αύξηση",
+    "trendDown": "Μείωση",
+    "trendStable": "Σταθερό",
+    "invalidKg": "Δώσε ένα έγκυρο βάρος (0–500 kg)"
+  },
+  "shopping": {
+    "title": "Λίστα αγορών",
+    "current": "Τρέχον πλάνο",
+    "next": "Επόμενο",
+    "haveAlready": "Υπάρχει ήδη",
+    "alreadyHaveSection": "Έχω ήδη ({{count}})",
+    "empty": "Όλα είναι ήδη παρακολουθημένα.",
+    "share": "Κοινοποίηση",
+    "categories": {
+      "produce": "Φρούτα & Λαχανικά",
+      "dairy": "Γαλακτοκομικά",
+      "grains": "Δημητριακά",
+      "protein": "Πρωτεΐνη",
+      "other": "Άλλα"
+    }
+  },
+  "settings": {
+    "title": "Ρυθμίσεις",
+    "profile": "Προφίλ",
+    "name": "Όνομα",
+    "email": "Email",
+    "language": "Γλώσσα",
+    "timezone": "Ζώνη ώρας",
+    "theme": "Θέμα",
+    "themeSystem": "Σύστημα",
+    "themeLight": "Φωτεινό",
+    "themeDark": "Σκοτεινό",
+    "saved": "Αποθηκεύτηκε",
+    "exportData": "Εξαγωγή δεδομένων",
+    "exportDescription": "Λήψη όλων των δεδομένων σου σε JSON.",
+    "dangerZone": "Κίνδυνος",
+    "deleteAccount": "Διαγραφή λογαριασμού",
+    "deleteAccountConfirm": "Είσαι σίγουρος; Δεν αναιρείται.",
+    "signOut": "Αποσύνδεση"
+  }
+}
