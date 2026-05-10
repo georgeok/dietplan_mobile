@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
-// SDK 55: the synchronous File/Directory API is the default export of
-// expo-file-system; the classic async helpers (cacheDirectory,
-// writeAsStringAsync) live under /legacy.
+// In expo-file-system v19 (SDK 54) the synchronous File/Directory API is the
+// default export; the classic async helpers (cacheDirectory, writeAsStringAsync)
+// live under /legacy.
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
 import { supabase } from '@/lib/supabase';

@@ -7,8 +7,8 @@ no dietitian screens (Phase 2).
 
 ## Stack
 
-- Expo SDK 55 + Expo Router v6 (file-based routes under `src/app/`)
-- React Native 0.82, React 19.1, Reanimated 4 (+ `react-native-worklets`)
+- Expo SDK 54 + Expo Router v6 (file-based routes under `src/app/`)
+- React Native 0.81, React 19.1, Reanimated 4 (+ `react-native-worklets`)
 - NativeWind v4 — design tokens ported verbatim from the web's `globals.css`
 - TanStack Query v5 for server state; mutations invalidate query keys instead
   of the web's `revalidatePath`

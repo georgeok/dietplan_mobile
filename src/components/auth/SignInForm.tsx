@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'expo-router';
 import { toast } from 'sonner-native';
 import * as WebBrowser from 'expo-web-browser';
 import { supabase } from '@/lib/supabase';
@@ -11,6 +12,7 @@ import { Label } from '@/components/ui/Label';
 
 export function SignInForm({ initialError }: { initialError?: string }) {
   const { t } = useTranslation();
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [sending, setSending] = useState(false);
   const [oauthLoading, setOauthLoading] = useState(false);
@@ -39,6 +41,7 @@ export function SignInForm({ initialError }: { initialError?: string }) {
   const onGoogle = async () => {
     setOauthLoading(true);
     const redirectTo = authCallbackURL();
+    if (__DEV__) console.log('[auth] OAuth redirectTo =', redirectTo);
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: { redirectTo, skipBrowserRedirect: true },
@@ -48,10 +51,13 @@ export function SignInForm({ initialError }: { initialError?: string }) {
       toast.error(error?.message ?? t('auth.errors.generic'));
       return;
     }
+    // openAuthSessionAsync intercepts the redirect and hands us the final URL;
+    // the in-app browser closes itself but no OS deep-link event fires, so we
+    // forward result.url to /auth/callback to finish the code exchange.
     const result = await WebBrowser.openAuthSessionAsync(data.url, redirectTo);
     setOauthLoading(false);
     if (result.type !== 'success') return;
-    // Deep-link will route to /auth/callback which finishes the exchange.
+    router.replace({ pathname: '/auth/callback', params: { url: result.url } });
   };
 
   return (

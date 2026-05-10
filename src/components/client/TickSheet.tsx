@@ -45,7 +45,7 @@ export function TickSheet({
   onClear,
   onPickPhoto,
 }: {
-  sheetRef: React.RefObject<TickSheetRef>;
+  sheetRef: React.RefObject<TickSheetRef | null>;
   editable: boolean;
   onSubmit: (recipe: SnapshotRecipe, payload: TickSheetSubmit) => Promise<void> | void;
   onClear: (recipe: SnapshotRecipe) => Promise<void> | void;

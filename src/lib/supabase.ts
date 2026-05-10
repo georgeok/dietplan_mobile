@@ -44,6 +44,9 @@ export const supabase = createClient<Database, 'dp'>(SUPABASE_URL, SUPABASE_KEY,
     autoRefreshToken: true,
     persistSession: true,
     detectSessionInUrl: false,
+    // Mobile deep-link OAuth: the provider redirects back with `?code=...`,
+    // which we hand to supabase.auth.exchangeCodeForSession().
+    flowType: 'pkce',
   },
   db: { schema: 'dp' },
 });

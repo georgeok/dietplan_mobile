@@ -140,7 +140,10 @@ export type Database = {
       };
       weight_logs: {
         Row: WeightLogRow;
-        Insert: Partial<WeightLogRow> & { client_id: string; kg: number | string };
+        Insert: Partial<Omit<WeightLogRow, 'kg'>> & {
+          client_id: string;
+          kg: number | string;
+        };
         Update: Partial<WeightLogRow>;
         Relationships: [];
       };

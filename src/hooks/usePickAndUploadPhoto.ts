@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import * as ImagePicker from 'expo-image-picker';
-import * as ImageManipulator from 'expo-image-manipulator';
+import { ImageManipulator, SaveFormat } from 'expo-image-manipulator';
 import { supabase } from '@/lib/supabase';
 
 export function usePickAndUploadPhoto() {
@@ -20,13 +20,13 @@ export function usePickAndUploadPhoto() {
       if (picked.canceled || !picked.assets[0]) return null;
       const asset = picked.assets[0];
 
-      // expo-image-manipulator SDK 55 context API.
+      // expo-image-manipulator contextual (object-oriented) API.
       const context = ImageManipulator.manipulate(asset.uri);
       context.resize({ width: 1280 });
       const rendered = await context.renderAsync();
       const result = await rendered.saveAsync({
         compress: 0.8,
-        format: ImageManipulator.SaveFormat.JPEG,
+        format: SaveFormat.JPEG,
       });
 
       const blob = await fetch(result.uri).then((r) => r.blob());

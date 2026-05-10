@@ -1,4 +1,4 @@
-import { Appearance, type ColorSchemeName, View } from 'react-native';
+import { Appearance, View } from 'react-native';
 import { useEffect, useMemo, useState, createContext, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { colorsLight, colorsDark, type ThemeColors } from '@/lib/theme/colors';
@@ -18,8 +18,8 @@ const MODE_KEY = 'app.themeMode';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mode, setModeState] = useState<ThemeMode>('system');
-  const [systemScheme, setSystemScheme] = useState<ColorSchemeName>(
-    Appearance.getColorScheme(),
+  const [systemScheme, setSystemScheme] = useState<'light' | 'dark'>(
+    Appearance.getColorScheme() === 'dark' ? 'dark' : 'light',
   );
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       }
     });
     const sub = Appearance.addChangeListener(({ colorScheme }) => {
-      setSystemScheme(colorScheme);
+      setSystemScheme(colorScheme === 'dark' ? 'dark' : 'light');
     });
     return () => sub.remove();
   }, []);

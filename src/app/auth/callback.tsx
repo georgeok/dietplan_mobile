@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as Linking from 'expo-linking';
 import { supabase } from '@/lib/supabase';
 import { getCurrentRole } from '@/lib/auth/role';
@@ -12,13 +12,38 @@ export default function AuthCallbackScreen() {
   const router = useRouter();
   const { refresh } = useAuth();
   const handled = useRef(false);
+  // Either we were reached by a real deep link (expo-router fills in the query
+  // params individually) or SignInForm forwarded the OAuth result as `url`.
+  const {
+    url: urlParam,
+    code: codeParam,
+    token_hash: tokenHashParam,
+    type: typeParam,
+    error_description: errorDescriptionParam,
+  } = useLocalSearchParams<{
+    url?: string;
+    code?: string;
+    token_hash?: string;
+    type?: string;
+    error_description?: string;
+  }>();
 
   useEffect(() => {
     if (handled.current) return;
     handled.current = true;
     (async () => {
-      const url = await Linking.getInitialURL();
-      const params = url ? Linking.parse(url).queryParams ?? {} : {};
+      let params: Record<string, unknown> = {
+        code: codeParam,
+        token_hash: tokenHashParam,
+        type: typeParam,
+        error_description: errorDescriptionParam,
+      };
+      if (typeof urlParam === 'string' && urlParam.length > 0) {
+        params = Linking.parse(urlParam).queryParams ?? {};
+      } else if (!codeParam && !tokenHashParam && !errorDescriptionParam) {
+        const initialUrl = await Linking.getInitialURL();
+        if (initialUrl) params = Linking.parse(initialUrl).queryParams ?? {};
+      }
       const code = stringParam(params.code);
       const tokenHash = stringParam(params.token_hash);
       const type = stringParam(params.type) as OtpType | null;
@@ -75,7 +100,15 @@ export default function AuthCallbackScreen() {
         });
       }
     })();
-  }, [refresh, router]);
+  }, [
+    refresh,
+    router,
+    urlParam,
+    codeParam,
+    tokenHashParam,
+    typeParam,
+    errorDescriptionParam,
+  ]);
 
   return (
     <View className="flex-1 items-center justify-center bg-background">

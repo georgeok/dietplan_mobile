@@ -66,4 +66,4 @@ export const colorsDark = {
   violet700: '#6D28D9',
 } as const;
 
-export type ThemeColors = typeof colorsLight;
+export type ThemeColors = Record<keyof typeof colorsLight, string>;
