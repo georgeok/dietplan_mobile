@@ -7,22 +7,29 @@ no dietitian screens (Phase 2).
 
 ## Stack
 
-- Expo SDK 54 + Expo Router v4 (file-based routes under `src/app/`)
+- Expo SDK 55 + Expo Router v6 (file-based routes under `src/app/`)
+- React Native 0.82, React 19.1, Reanimated 4 (+ `react-native-worklets`)
 - NativeWind v4 — design tokens ported verbatim from the web's `globals.css`
 - TanStack Query v5 for server state; mutations invalidate query keys instead
   of the web's `revalidatePath`
 - `@supabase/supabase-js` v2 talking directly to the existing Supabase backend
   (RLS-protected; no service-role key on device)
 - i18next + expo-localization (Greek default + English)
-- victory-style SVG weight chart, `@gorhom/bottom-sheet` tick sheet
+- SVG weight chart, `@gorhom/bottom-sheet` tick sheet
 
 ## Setup
 
 ```bash
 npm install
-cp .env.example .env   # fill in EXPO_PUBLIC_SUPABASE_URL + EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+npx expo install --fix    # lock exact SDK-55-compatible versions of expo-*/react-native-*
+cp .env.example .env      # fill in EXPO_PUBLIC_SUPABASE_URL + EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 npx expo start
 ```
+
+> The `expo-*` / `react-native-*` versions in `package.json` are SDK-55
+> estimates. Run `npx expo install --fix` (and optionally `npx expo-doctor`)
+> once to pin the exact compatible set — it queries Expo's API for the canonical
+> versions of that SDK.
 
 Scan the QR code with **Expo Go** on a physical iOS/Android device.
 
