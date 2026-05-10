@@ -33,6 +33,7 @@
       "linkExpired": "That sign-in link has expired or has already been used. Try again.",
       "noInvitation": "We couldn't find an invitation for this email.",
       "clientOnlyApp": "This app is for clients only.",
+      "oauthNotCompleted": "Google sign-in didn't finish. Please try again.",
       "generic": "Something went wrong while signing you in."
     }
   },

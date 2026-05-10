@@ -40,10 +40,24 @@ Scan the QR code with **Expo Go** on a physical iOS/Android device.
    `bind_invited_client(email)` (invitation acceptance) and
    `delete_my_client_account()` (GDPR delete). The mobile binary cannot ship a
    service-role key, so these are the boundary.
-2. In the Supabase dashboard → Authentication → URL Configuration → Redirect
-   URLs, add the Expo Go dev URL so magic-link emails open the app:
-   `exp://<your-lan-ip>:8081/--/auth/callback` (printed by `npx expo start`).
-   Keep the production web URL there too.
+2. In the Supabase dashboard → Authentication → URL Configuration → **Redirect
+   URLs**, add the Expo Go dev URL so magic-link emails *and Google OAuth* come
+   back to the app. In Expo Go the redirect is
+   `exp://<your-lan-ip>:8081/--/auth/callback` — note the `/--/` segment is
+   required, the port is `8081`, and **the LAN IP changes whenever you switch
+   Wi-Fi / reconnect**, so a literal entry goes stale. For dev, also add the
+   wildcard **`exp://**`** (Supabase's `**` matches across `/` and `.`; a single
+   `*` does not, so `exp://*` will *not* match). Keep the production web URL there
+   too. This is the **Redirect URLs** list, *not* Google Cloud Console — the
+   Google OAuth client only needs `https://<project-ref>.supabase.co/auth/v1/callback`.
+
+   If Google sign-in opens the browser, you log in, and then the browser parks on
+   the web app instead of closing, that's Supabase falling back to the **Site
+   URL** because none of the Redirect URLs matched. To see the exact value the
+   app is sending, watch the Metro terminal after tapping "Continue with Google"
+   for `[auth] OAuth redirectTo = …` (only printed by the local dev bundle — make
+   sure Expo Go opened *your* `npm start` URL, not a published update), or read it
+   off the dev alert that pops up if the sign-in doesn't complete.
 3. A `tick-photos` storage bucket must exist with client read/write RLS
    (already present from the web app).
 

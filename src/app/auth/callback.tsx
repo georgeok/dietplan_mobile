@@ -65,8 +65,8 @@ export default function AuthCallbackScreen() {
           });
           if (error) throw error;
         } else {
-          // No payload — go back to sign-in.
-          router.replace('/(auth)/sign-in');
+          // No payload — go back to sign-in with a message instead of a no-op.
+          router.replace({ pathname: '/(auth)/sign-in', params: { error: 'generic' } });
           return;
         }
       } catch (err) {

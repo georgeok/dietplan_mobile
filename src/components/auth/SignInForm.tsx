@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'expo-router';
 import { toast } from 'sonner-native';
 import * as WebBrowser from 'expo-web-browser';
+import * as Linking from 'expo-linking';
 import { supabase } from '@/lib/supabase';
 import { authCallbackURL } from '@/lib/deeplink';
 import { Input } from '@/components/ui/Input';
@@ -38,6 +39,21 @@ export function SignInForm({ initialError }: { initialError?: string }) {
     toast.success(t('auth.magicLinkSent'));
   };
 
+  // Supabase only redirects back to `redirectTo` if that exact URL is in the
+  // project's Auth → Redirect URLs allowlist; otherwise it silently falls back
+  // to the Site URL and the in-app browser parks there instead of closing. In
+  // Expo Go `redirectTo` embeds the LAN IP, which changes between networks, so
+  // surface the value the dev needs to whitelist when the round-trip fails.
+  const reportOAuthFailure = (redirectTo: string) => {
+    toast.error(t('auth.errors.oauthNotCompleted'));
+    if (__DEV__) {
+      Alert.alert(
+        'Google sign-in did not redirect back',
+        `Add this exact URL to Supabase → Authentication → URL Configuration → Redirect URLs (the IP changes when you switch networks):\n\n${redirectTo}`,
+      );
+    }
+  };
+
   const onGoogle = async () => {
     setOauthLoading(true);
     const redirectTo = authCallbackURL();
@@ -56,7 +72,15 @@ export function SignInForm({ initialError }: { initialError?: string }) {
     // forward result.url to /auth/callback to finish the code exchange.
     const result = await WebBrowser.openAuthSessionAsync(data.url, redirectTo);
     setOauthLoading(false);
-    if (result.type !== 'success') return;
+    if (result.type !== 'success') {
+      reportOAuthFailure(redirectTo);
+      return;
+    }
+    const params = Linking.parse(result.url).queryParams ?? {};
+    if (!params.code && !params.token_hash && !params.error_description) {
+      reportOAuthFailure(redirectTo);
+      return;
+    }
     router.replace({ pathname: '/auth/callback', params: { url: result.url } });
   };
 
